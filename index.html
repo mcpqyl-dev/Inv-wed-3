@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación de Boda — [Nombres de los Novios]</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- SOBRE DE INVITACIÓN (Pantalla inicial)       -->
+    <!-- ============================================ -->
+    <section id="sobre-section" class="sobre-section loading-state">
+        <div class="sobre-container">
+            <!-- Fondo decorativo -->
+            <div class="fondo-botanico">
+                <div class="hoja hoja-1"></div>
+                <div class="hoja hoja-2"></div>
+                <div class="hoja hoja-3"></div>
+                <div class="hoja hoja-4"></div>
+            </div>
+
+            <!-- El sobre -->
+            <div class="sobre" id="sobre">
+                <!-- Parte trasera del sobre -->
+                <div class="sobre-trasera"></div>
+
+                <!-- Carta visible al abrir -->
+                <div class="sobre-papel"></div>
+
+                <!-- Cara frontal del sobre -->
+                <div class="sobre-frente"></div>
+
+                <!-- Solapa del sobre -->
+                <div class="solapa" id="solapa">
+                    <div class="solapa-interior"></div>
+                </div>
+
+                <!-- Contenido frontal del sobre -->
+                <div class="sobre-frente-contenido" aria-live="polite">
+                    <p class="carta-para">Para:</p>
+                    <div class="campo-nombre">
+                        <h2 class="carta-nombre" id="nombre-invitado">[Nombre del Invitado]</h2>
+                    </div>
+                    <p class="carta-pases">
+                        <span class="pases-numero" id="cantidad-pases">[X]</span>
+                        <span class="pases-texto">pase(s)</span>
+                    </p>
+                </div>
+
+                <!-- Sello de cera -->
+                <button type="button" class="sello-cera" id="sello-cera" aria-label="Abrir invitacion">
+                    <img src="Image/sello.png" alt="Sello del sobre" class="sello-cera-imagen">
+                </button>
+            </div>
+
+            <p class="sobre-hint">Toca el sello para abrir la invitación</p>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- INVITACIÓN PRINCIPAL (Se revela al abrir)    -->
+    <!-- ============================================ -->
+    <section id="invitacion-section" class="invitacion-section hidden">
+
+        <!-- Header con nombres -->
+        <header class="invitacion-header">
+            <div class="header-decoracion">
+                <div class="rama-izq"></div>
+                <div class="rama-der"></div>
+            </div>
+            <p class="header-subtitulo">Juntos con nuestras familias</p>
+            <h1 class="header-nombres">
+                <span class="nombre-novia">Verónica</span>
+                <span class="nombre-y">&</span>
+                <span class="nombre-novio">Luis</span>
+            </h1>
+            <p class="header-frase">"El amor es paciente, el amor es bondadoso..."</p>
+        </header>
+
+        <!-- Fecha y lugar -->
+        <section class="seccion-fecha">
+            <div class="countdown" aria-live="polite" aria-atomic="true">
+                <p class="countdown-titulo">El gran dia empieza en</p>
+                <div class="countdown-tiempo" id="countdown-tiempo">
+                    <div class="countdown-bloque">
+                        <span class="countdown-numero" id="cd-dias">00</span>
+                        <span class="countdown-etiqueta">Días</span>
+                    </div>
+                    <span class="countdown-separador">:</span>
+                    <div class="countdown-bloque">
+                        <span class="countdown-numero" id="cd-horas">00</span>
+                        <span class="countdown-etiqueta">Horas</span>
+                    </div>
+                    <span class="countdown-separador">:</span>
+                    <div class="countdown-bloque">
+                        <span class="countdown-numero" id="cd-minutos">00</span>
+                        <span class="countdown-etiqueta">Min</span>
+                    </div>
+                    <span class="countdown-separador">:</span>
+                    <div class="countdown-bloque">
+                        <span class="countdown-numero" id="cd-segundos">00</span>
+                        <span class="countdown-etiqueta">Seg</span>
+                    </div>
+                </div>
+            </div>
+            <div class="fecha-container">
+                <div class="fecha-linea fecha-linea-izq"></div>
+                <div class="fecha-centro">
+                    <p class="fecha-dia-semana">Sábado</p>
+                    <p class="fecha-dia">29</p>
+                    <p class="fecha-mes">Mayo</p>
+                    <p class="fecha-año">2027</p>
+                </div>
+                <div class="fecha-linea fecha-linea-der"></div>
+            </div>
+            <div class="lugar-info">
+                <p class="lugar-nombre">Casa Paz Soldán</p>
+                <p class="lugar-direccion">[Dirección completa del evento]</p>
+                <p class="lugar-hora">Ceremonia: [2:30 PM] | Recepción: [5:00 PM]</p>
+                <button type="button" class="mapa-boton" id="abrir-mapa" aria-label="Abrir ubicacion">
+                    Ver ubicacion en Google Maps
+                </button>
+            </div>
+        </section>
+
+        <!-- Galería de fotos -->
+        <section class="seccion-fotos">
+            <h3 class="seccion-titulo">Nuestra Historia</h3>
+            <div class="fotos-grid">
+                <div class="foto-item foto-grande">
+                    <img src="assets/images/novios-1.jpg" alt="Foto de los novios" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=600'">
+                </div>
+                <div class="foto-item">
+                    <img src="assets/images/novios-2.jpg" alt="Foto de los novios" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400'">
+                </div>
+                <div class="foto-item">
+                    <img src="assets/images/novios-3.jpg" alt="Foto de los novios" onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400'">
+                </div>
+                <div class="foto-item foto-ancho">
+                    <img src="assets/images/novios-4.jpg" alt="Foto de los novios" onerror="this.src='https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600'">
+                </div>
+            </div>
+        </section>
+
+        <!-- Itinerario / Timeline -->
+        <section class="seccion-itinerario">
+            <h3 class="seccion-titulo">Itinerario</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-hora">[4:00 PM]</div>
+                    <div class="timeline-punto"></div>
+                    <div class="timeline-contenido">
+                        <h4>Ceremonia</h4>
+                        <p>[Lugar de la ceremonia]</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-hora">[5:30 PM]</div>
+                    <div class="timeline-punto"></div>
+                    <div class="timeline-contenido">
+                        <h4>Cóctel de Bienvenida</h4>
+                        <p>[Lugar del cóctel]</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-hora">[7:00 PM]</div>
+                    <div class="timeline-punto"></div>
+                    <div class="timeline-contenido">
+                        <h4>Cena y Celebración</h4>
+                        <p>[Salón principal]</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-hora">[12:00 AM]</div>
+                    <div class="timeline-punto"></div>
+                    <div class="timeline-contenido">
+                        <h4>Cierre</h4>
+                        <p>¡A bailar hasta el amanecer!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dress code -->
+        <section class="seccion-dresscode">
+            <h3 class="seccion-titulo">Código de Vestimenta</h3>
+            <div class="dresscode-container">
+                <div class="dresscode-item">
+                    <div class="dresscode-icono">👔</div>
+                    <p class="dresscode-texto">[Formal / Semi-formal / Casual elegante]</p>
+                </div>
+                <div class="dresscode-paleta">
+                    <div class="swatch-item">
+                        <div class="color-swatch" style="background: #9CAF88;"></div>
+                        <span class="swatch-nombre">Salvia</span>
+                    </div>
+                    <div class="swatch-item">
+                        <div class="color-swatch" style="background: #E2725B;"></div>
+                        <span class="swatch-nombre">Terracota</span>
+                    </div>
+                    <div class="swatch-item">
+                        <div class="color-swatch" style="background: #D4A574;"></div>
+                        <span class="swatch-nombre">Dorado</span>
+                    </div>
+                    <div class="swatch-item">
+                        <div class="color-swatch" style="background: #F5F0E8;"></div>
+                        <span class="swatch-nombre">Crema</span>
+                    </div>
+                </div>
+                <p class="dresscode-nota">[Nota adicional sobre vestimenta]</p>
+            </div>
+        </section>
+
+        <!-- Regalos -->
+        <section class="seccion-regalos">
+            <h3 class="seccion-titulo">Regalos</h3>
+            <p class="regalos-texto">[Mensaje sobre regalos, mesa de regalos, lluvia de sobres, etc.]</p>
+            <div class="regalos-datos">
+                <p><strong>Mesa de Regalos:</strong> [Nombre de la tienda]</p>
+                <p><strong>Número de Evento:</strong> [XXXXX]</p>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- FORMULARIO DE CONFIRMACIÓN (RSVP)            -->
+        <!-- ============================================ -->
+        <section class="seccion-rsvp" id="rsvp">
+            <div class="rsvp-container">
+                <h3 class="seccion-titulo">Confirmación de Asistencia</h3>
+                <p class="rsvp-subtitulo">Por favor confirma tu asistencia antes del [fecha límite]</p>
+                <div id="guest-status" class="guest-status" aria-live="polite">
+                    <p id="guest-status-text">Validando invitación...</p>
+                </div>
+
+                <form id="rsvp-form" class="rsvp-form">
+                    <input type="hidden" id="rsvp-codigo" name="codigo" value="">
+                    <div class="form-grupo">
+                        <label>¿Asistirás a la celebración?</label>
+                        <div class="radio-grupo">
+                            <label class="radio-label">
+                                <input type="radio" name="asistencia" value="si" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-texto">Sí, ¡allí estaré!</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="asistencia" value="no">
+                                <span class="radio-custom"></span>
+                                <span class="radio-texto">No podré asistir</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-grupo" id="grupo-cantidad">
+                        <label for="rsvp-cantidad">Cantidad de asistentes (máx. <span id="max-pases">[X]</span>)</label>
+                        <div class="cantidad-selector">
+                            <button type="button" class="cantidad-btn" id="btn-menos" aria-label="Disminuir cantidad de asistentes">−</button>
+                            <input type="number" id="rsvp-cantidad" name="cantidad" min="1" max="10" value="1" readonly>
+                            <button type="button" class="cantidad-btn" id="btn-mas" aria-label="Aumentar cantidad de asistentes">+</button>
+                        </div>
+                    </div>
+
+                    <div class="form-grupo" id="grupo-nombres">
+                        <label for="rsvp-nombres-lineas">Nombres de los asistentes</label>
+                        <div id="rsvp-nombres-lineas" class="nombres-lineas" aria-live="polite"></div>
+                        <small class="ayuda-texto">Escribe un nombre por cada asistente confirmado.</small>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="rsvp-mensaje">Mensaje para los novios</label>
+                        <textarea id="rsvp-mensaje" name="mensaje" rows="3" placeholder="Déjanos un mensaje... (opcional)"></textarea>
+                    </div>
+
+                    <button type="submit" class="rsvp-boton" id="rsvp-boton" aria-label="Confirmar asistencia">
+                        <span class="boton-texto">Enviar Confirmación</span>
+                        <span class="boton-icono">✉</span>
+                    </button>
+                </form>
+
+                <!-- Mensaje de éxito -->
+                <div id="rsvp-exito" class="rsvp-exito hidden" aria-live="polite">
+                    <div class="exito-icono">✓</div>
+                    <h4>¡Gracias!</h4>
+                    <p>Tu confirmación ha sido enviada correctamente.</p>
+                    <p class="exito-detalles" id="exito-detalles"></p>
+                </div>
+
+                <!-- Mensaje de error -->
+                <div id="rsvp-error" class="rsvp-error hidden" aria-live="assertive">
+                    <div class="error-icono">✕</div>
+                    <h4>Ups, algo salió mal</h4>
+                    <p id="error-mensaje">Por favor intenta de nuevo más tarde.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="invitacion-footer">
+            <div class="footer-corazones">
+                <span>♡</span><span>♡</span><span>♡</span>
+            </div>
+            <p class="footer-texto">[Nombres de los Novios]</p>
+            <p class="footer-fecha">[Fecha de la boda]</p>
+            <p class="footer-hashtag">#[HashtagDeLaBoda]</p>
+        </footer>
+
+    </section>
+
+    <!-- Confetti container -->
+    <div id="confetti-container"></div>
+
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/google-sheets.js"></script>
+</body>
+</html>
