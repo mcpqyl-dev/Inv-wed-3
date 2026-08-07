@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const ceremoniaHora = document.getElementById('ceremonia-hora');
     const recepcionHora = document.getElementById('recepcion-hora');
     const abrirMapaBtn = document.getElementById('abrir-mapa');
+    const abrirMapaMisaBtn = document.getElementById('abrir-mapa-misa');
     const musicFab = document.getElementById('music-fab');
     const musicMuteFab = document.getElementById('music-mute-fab');
     const musicaBoda = document.getElementById('musica-boda');
@@ -445,27 +446,24 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function setupMapButton() {
-        if (!abrirMapaBtn) return;
+    function bindMapButton(button, mapsConfig, fallbackTitle) {
+        if (!button) return;
 
-        const mapsConfig = uiConfig.maps || {};
-        const lat = Number(mapsConfig.lat);
-        const lng = Number(mapsConfig.lng);
-        const zoom = Number.isFinite(Number(mapsConfig.zoom)) ? Number(mapsConfig.zoom) : 17;
+        const lat = Number(mapsConfig && mapsConfig.lat);
+        const lng = Number(mapsConfig && mapsConfig.lng);
+        const zoom = Number.isFinite(Number(mapsConfig && mapsConfig.zoom)) ? Number(mapsConfig.zoom) : 17;
 
         if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
-            abrirMapaBtn.disabled = true;
-            abrirMapaBtn.setAttribute('aria-disabled', 'true');
-            abrirMapaBtn.title = 'Faltan coordenadas validas en la configuracion.';
+            button.disabled = true;
+            button.setAttribute('aria-disabled', 'true');
+            button.title = fallbackTitle;
             return;
         }
 
         const mapsUrl = 'https://www.google.com/maps?q=' + encodeURIComponent(lat + ',' + lng) + '&z=' + encodeURIComponent(String(zoom));
         const isMobileDevice = window.matchMedia('(max-width: 768px)').matches || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 
-        abrirMapaBtn.addEventListener('click', function () {
-            // En moviles, abrir en la misma pestana evita dejar una ventana en blanco
-            // cuando el sistema redirige la URL hacia la app de Google Maps.
+        button.addEventListener('click', function () {
             if (isMobileDevice) {
                 window.location.assign(mapsUrl);
                 return;
@@ -481,6 +479,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 window.location.href = mapsUrl;
             }
         });
+    }
+
+    function setupMapButton() {
+        bindMapButton(abrirMapaBtn, uiConfig.maps || {}, 'Faltan coordenadas validas de la recepcion en la configuracion.');
+        bindMapButton(abrirMapaMisaBtn, uiConfig.churchMaps || {}, 'Faltan coordenadas validas de la misa en la configuracion.');
     }
 
     function setupMusicPlayer() {

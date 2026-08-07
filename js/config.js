@@ -18,12 +18,18 @@
             // Fecha/hora de la ceremonia para la cuenta regresiva (formato ISO).
             ceremonyDateIso: '2027-05-29T14:30:00',
             receptionTimeLabel: '5:00 PM',
-            // URL publica de la cancion para el boton flotante de reproduccion.
-            musicUrl: 'https://youtu.be/LjhCEhWiKXk?si=wTxTY79KptFOmSSn&t=15',
-            // Nota: cambia estas coordenadas por las reales del local.
+            // URL publica DIRECTA de audio (mp3/ogg/m4a). Youtube no funciona aqui.
+            musicUrl: '',
+            // Nota: cambia estas coordenadas por las reales del local de recepcion.
             maps: {
                 lat: 19.432608,
                 lng: -99.133209,
+                zoom: 17
+            },
+            // Coordenadas de la misa/iglesia.
+            churchMaps: {
+                lat: 19.4309,
+                lng: -99.1351,
                 zoom: 17
             }
         },
