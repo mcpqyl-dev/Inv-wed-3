@@ -490,8 +490,15 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!musicFab || !musicaBoda) return;
 
         const musicUrl = String(uiConfig.musicUrl || '').trim();
+        const initialVolume = Number(uiConfig.musicInitialVolume);
         const source = musicaBoda.querySelector('source');
         let uploadedObjectUrl = '';
+
+        if (Number.isFinite(initialVolume)) {
+            musicaBoda.volume = Math.min(1, Math.max(0, initialVolume));
+        } else {
+            musicaBoda.volume = 0.3;
+        }
 
         function hasLoadedTrack() {
             return Boolean(musicaBoda.currentSrc || musicaBoda.src);
