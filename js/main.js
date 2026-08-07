@@ -420,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }, observerOptions);
 
-        document.querySelectorAll('.seccion-portada, .seccion-padres, .seccion-fecha, .seccion-fotos, .seccion-itinerario, .seccion-dresscode, .seccion-regalos, .seccion-rsvp').forEach(function (section) {
+        document.querySelectorAll('.seccion-padres, .seccion-fecha, .seccion-fotos, .seccion-itinerario, .seccion-dresscode, .seccion-regalos, .seccion-rsvp, .invitacion-footer').forEach(function (section) {
             section.style.opacity = '0';
             section.style.transform = 'translateY(30px)';
             section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';

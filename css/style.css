@@ -474,6 +474,7 @@ img {
 .invitacion-section {
     animation: fadeInUp 1s ease forwards;
     width: 100%;
+    padding-bottom: 2.5rem;
 }
 
 @keyframes fadeInUp {
@@ -554,15 +555,15 @@ img {
 }
 
 .seccion-portada {
-    min-height: 74vh;
+    min-height: 100dvh;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 2rem 1.5rem;
-    margin: 0 auto 2.5rem;
-    max-width: 1160px;
-    border-radius: 18px;
+    margin: 0 0 2.4rem;
+    max-width: none;
+    border-radius: 0;
     overflow: hidden;
 }
 
@@ -631,7 +632,7 @@ img {
 .seccion-padres {
     padding: 1rem 1.5rem 3rem;
     max-width: 1160px;
-    margin: 0 auto;
+    margin: 0 auto 1.2rem;
 }
 
 .padres-contenedor {
@@ -671,7 +672,7 @@ img {
     padding: 3rem 1.5rem;
     text-align: center;
     max-width: 1160px;
-    margin: 0 auto;
+    margin: 0 auto 1.2rem;
 }
 
 .countdown {
@@ -889,7 +890,7 @@ img {
     padding: 3rem 1.5rem;
     background: linear-gradient(180deg, transparent, rgba(156, 175, 136, 0.06), transparent);
     max-width: 1160px;
-    margin: 0 auto;
+    margin: 0 auto 1.2rem;
 }
 
 .seccion-titulo {
@@ -972,7 +973,7 @@ img {
 .seccion-itinerario {
     padding: 3rem 1.5rem;
     max-width: 1160px;
-    margin: 0 auto;
+    margin: 0 auto 1.2rem;
 }
 
 .timeline-subtitulo {
@@ -1070,7 +1071,7 @@ img {
     padding: 3rem 1.5rem;
     background: linear-gradient(180deg, transparent, rgba(226, 114, 91, 0.04), transparent);
     max-width: 1160px;
-    margin: 0 auto;
+    margin: 0 auto 1.2rem;
 }
 
 .dresscode-container {
@@ -1163,7 +1164,7 @@ img {
     padding: 3rem 1.5rem;
     text-align: center;
     max-width: 1160px;
-    margin: 0 auto;
+    margin: 0 auto 1.2rem;
 }
 
 .regalos-texto {
@@ -1202,7 +1203,20 @@ img {
     padding: 4rem 1.5rem;
     background: linear-gradient(180deg, var(--crema), #EDE8DF, var(--crema));
     max-width: 1160px;
-    margin: 0 auto;
+    margin: 0 auto 1.2rem;
+}
+
+.seccion-padres,
+.seccion-fecha,
+.seccion-fotos,
+.seccion-itinerario,
+.seccion-dresscode,
+.seccion-regalos,
+.seccion-rsvp {
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(212, 165, 116, 0.24);
+    border-radius: 18px;
+    box-shadow: 0 10px 24px var(--sombra-suave);
 }
 
 .rsvp-container {
@@ -1710,8 +1724,11 @@ img {
     }
 
     .seccion-portada {
-        min-height: 82vh;
-        margin-bottom: 1.2rem;
+        min-height: 100dvh;
+        margin-bottom: 1rem;
+        border-radius: 0;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
     .portada-nombres {
@@ -1720,6 +1737,17 @@ img {
 
     .portada-frase {
         font-size: 0.9rem;
+    }
+
+    .seccion-padres,
+    .seccion-fecha,
+    .seccion-fotos,
+    .seccion-itinerario,
+    .seccion-dresscode,
+    .seccion-regalos,
+    .seccion-rsvp {
+        border-radius: 14px;
+        margin-bottom: 0.9rem;
     }
 
     .padres-contenedor {
