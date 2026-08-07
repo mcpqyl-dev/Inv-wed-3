@@ -1214,10 +1214,7 @@ img {
 .seccion-dresscode,
 .seccion-regalos,
 .seccion-rsvp {
-    background: rgba(255, 255, 255, 0.86);
-    border: 1px solid rgba(212, 165, 116, 0.24);
-    border-radius: 18px;
-    box-shadow: 0 10px 24px var(--sombra-suave);
+    background: transparent;
 }
 
 .rsvp-container {
@@ -1753,7 +1750,6 @@ img {
     .seccion-dresscode,
     .seccion-regalos,
     .seccion-rsvp {
-        border-radius: 14px;
         margin-bottom: 0.9rem;
     }
 

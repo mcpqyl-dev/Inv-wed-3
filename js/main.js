@@ -333,9 +333,6 @@ document.addEventListener('DOMContentLoaded', function () {
             invitacionSection.style.opacity = '1';
             invitacionSection.style.transform = 'translateY(0)';
             window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
-            if (!reduceMotion) {
-                launchConfetti();
-            }
         };
 
         if (reduceMotion) {
