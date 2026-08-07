@@ -69,7 +69,7 @@
 
         <section class="seccion-portada">
             <div class="portada-fondo">
-                <img src="assets/images/novios-portada.jpg" alt="Fotografia principal de los novios" onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1600'">
+                <img id="portada-imagen" src="" alt="Fotografia principal de los novios">
             </div>
             <div class="portada-overlay"></div>
             <div class="portada-contenido">
@@ -77,6 +77,7 @@
                 <h1 class="portada-nombres">Verónica & Luis</h1>
                 <p class="portada-frase">Con la gran alegria de compartir nuestro amor con ustedes</p>
                 <p class="portada-fecha">29 de Mayo de 2027</p>
+                <p class="portada-aviso" id="portada-aviso">Añade tu imagen de portada en js/config.js -> ui.coverImageUrl</p>
             </div>
         </section>
 
@@ -359,9 +360,9 @@
             <div class="footer-corazones">
                 <span>♡</span><span>♡</span><span>♡</span>
             </div>
-            <p class="footer-texto">[Nombres de los Novios]</p>
-            <p class="footer-fecha">[Fecha de la boda]</p>
-            <p class="footer-hashtag">#[HashtagDeLaBoda]</p>
+            <p class="footer-texto">Verónica y Luis</p>
+            <p class="footer-fecha">29/05/27</p>
+            <p class="footer-hashtag">#PorFinSeCasan</p>
         </footer>
 
     </section>
@@ -380,7 +381,7 @@
             </svg>
         </button>
     </div>
-    <audio id="musica-boda" preload="none" loop>
+    <audio id="musica-boda" preload="auto" loop>
         <source src="" type="audio/mpeg">
     </audio>
     <input type="file" id="music-upload" accept="audio/*" class="hidden" aria-hidden="true">

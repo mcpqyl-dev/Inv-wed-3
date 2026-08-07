@@ -18,11 +18,14 @@
             // Fecha/hora de la ceremonia para la cuenta regresiva (formato ISO).
             ceremonyDateIso: '2027-05-29T14:30:00',
             receptionTimeLabel: '5:00 PM',
+            // Imagen de portada (URL o ruta local del repo). Ejemplo: 'Image/portada.jpg'.
+            // Si queda vacio, se mostrara la portada sin foto.
+            coverImageUrl: '',
             // URL publica DIRECTA de audio (mp3/ogg/m4a). Youtube no funciona aqui.
             // Tambien puedes usar un archivo local del repo, ejemplo: 'audio/entrada-novios.mp3'.
             musicUrl: 'audio/Audio.mp3',
             // Volumen inicial de la musica entre 0 y 1.
-            musicInitialVolume: 0.3,
+            musicInitialVolume: 0.2,
             // Nota: cambia estas coordenadas por las reales del local de recepcion.
             maps: {
                 lat:-12.0523891567762,

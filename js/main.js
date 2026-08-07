@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const fechaAno = document.querySelector('.fecha-año');
     const ceremoniaHora = document.getElementById('ceremonia-hora');
     const recepcionHora = document.getElementById('recepcion-hora');
+    const seccionPortada = document.querySelector('.seccion-portada');
+    const portadaImagen = document.getElementById('portada-imagen');
+    const portadaAviso = document.getElementById('portada-aviso');
     const abrirMapaBtn = document.getElementById('abrir-mapa');
     const abrirMapaMisaBtn = document.getElementById('abrir-mapa-misa');
     const musicFab = document.getElementById('music-fab');
@@ -486,6 +489,34 @@ document.addEventListener('DOMContentLoaded', function () {
         bindMapButton(abrirMapaMisaBtn, uiConfig.churchMaps || {}, 'Faltan coordenadas validas de la misa en la configuracion.');
     }
 
+    function setupCoverImage() {
+        if (!seccionPortada || !portadaImagen) return;
+
+        const coverImageUrl = String(uiConfig.coverImageUrl || '').trim();
+
+        if (!coverImageUrl) {
+            portadaImagen.removeAttribute('src');
+            seccionPortada.classList.add('sin-imagen');
+            seccionPortada.classList.remove('con-imagen');
+            if (portadaAviso) portadaAviso.hidden = false;
+            return;
+        }
+
+        portadaImagen.src = coverImageUrl;
+        portadaImagen.loading = 'eager';
+        portadaImagen.decoding = 'async';
+        seccionPortada.classList.remove('sin-imagen');
+        seccionPortada.classList.add('con-imagen');
+        if (portadaAviso) portadaAviso.hidden = true;
+
+        portadaImagen.addEventListener('error', function () {
+            portadaImagen.removeAttribute('src');
+            seccionPortada.classList.add('sin-imagen');
+            seccionPortada.classList.remove('con-imagen');
+            if (portadaAviso) portadaAviso.hidden = false;
+        }, { once: true });
+    }
+
     function setupMusicPlayer() {
         if (!musicFab || !musicaBoda) return;
 
@@ -499,6 +530,8 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             musicaBoda.volume = 0.3;
         }
+
+        musicaBoda.preload = 'auto';
 
         function hasLoadedTrack() {
             return Boolean(musicaBoda.currentSrc || musicaBoda.src);
@@ -651,6 +684,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setupQuantitySelector();
     setupAttendanceToggle();
     setupCountdown();
+    setupCoverImage();
     setupMapButton();
     setupMusicPlayer();
     setupRevealAnimation();

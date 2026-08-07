@@ -582,10 +582,19 @@ img {
     height: 100%;
     object-fit: cover;
     object-position: center center;
+    opacity: 1;
 }
 
 .portada-overlay {
     background: linear-gradient(180deg, rgba(7, 11, 10, 0.42), rgba(7, 11, 10, 0.5));
+}
+
+.seccion-portada.sin-imagen .portada-fondo img {
+    opacity: 0;
+}
+
+.seccion-portada.sin-imagen .portada-overlay {
+    background: linear-gradient(180deg, rgba(29, 40, 38, 0.78), rgba(29, 40, 38, 0.86));
 }
 
 .portada-contenido {
@@ -628,6 +637,17 @@ img {
     letter-spacing: 2.4px;
     text-transform: uppercase;
     font-size: 0.84rem;
+}
+
+.portada-aviso {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.3px;
+    color: rgba(238, 243, 239, 0.75);
+}
+
+.seccion-portada.con-imagen .portada-aviso {
+    display: none;
 }
 
 .seccion-padres {
@@ -987,7 +1007,6 @@ img {
 }
 
 .timeline {
-    --timeline-side-width: 228px;
     max-width: 760px;
     margin: 0 auto;
     position: relative;
@@ -1010,11 +1029,11 @@ img {
     position: relative;
     padding: 0 0 1.55rem;
     display: grid;
-    grid-template-columns: var(--timeline-side-width) 56px var(--timeline-side-width);
+    grid-template-columns: 1fr 56px 1fr;
     align-items: center;
     gap: 0.9rem;
     justify-content: center;
-    width: calc((var(--timeline-side-width) * 2) + 56px + 1.8rem);
+    width: min(100%, 640px);
     margin: 0 auto;
 }
 
@@ -1032,7 +1051,7 @@ img {
     margin-bottom: 0;
     text-align: center;
     justify-self: center;
-    width: var(--timeline-side-width);
+    width: min(100%, 220px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1049,7 +1068,7 @@ img {
 .timeline-contenido {
     text-align: center;
     justify-self: center;
-    width: var(--timeline-side-width);
+    width: min(100%, 220px);
 }
 
 .timeline-contenido p {
@@ -1799,7 +1818,6 @@ img {
     }
 
     .timeline {
-        --timeline-side-width: min(40vw, 170px);
         max-width: 100%;
         padding: 0.2rem 0.15rem;
     }
@@ -1810,13 +1828,18 @@ img {
     }
 
     .timeline-item {
-        grid-template-columns: var(--timeline-side-width) 38px var(--timeline-side-width);
+        grid-template-columns: 1fr 38px 1fr;
         gap: 0.5rem;
         padding-left: 0;
         align-items: center;
         justify-content: center;
-        width: calc((var(--timeline-side-width) * 2) + 38px + 1rem);
+        width: min(100%, 370px);
         max-width: 100%;
+    }
+
+    .timeline-hora,
+    .timeline-contenido {
+        width: min(100%, 150px);
     }
 
     .timeline-hora {
