@@ -688,6 +688,24 @@ img {
     line-height: 1.5;
 }
 
+.padres-linea {
+    display: block;
+}
+
+.padres-paloma {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0.35rem;
+    vertical-align: middle;
+}
+
+.padres-paloma svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--dorado);
+    opacity: 0.85;
+}
+
 /* ─── Fecha y Lugar ─── */
 .seccion-fecha {
     padding: 3rem 1.5rem;
@@ -847,10 +865,18 @@ img {
 
 .lugar-nombre {
     font-family: var(--font-titulo);
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 500;
     color: var(--marron);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
+}
+
+.lugar-titulo {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--marron-claro);
+    margin-bottom: 0.2rem;
 }
 
 .lugar-direccion {
@@ -1441,6 +1467,7 @@ img {
     text-align: center;
     font-weight: 500;
     font-size: 1.1rem;
+    appearance: textfield;
     -moz-appearance: textfield;
 }
 
