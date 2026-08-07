@@ -15,8 +15,9 @@
             pasesDefault: 1,
             maxPasesAbsoluto: 10,
             ocultarCamposSiNoAsiste: true,
-            // Fecha/hora del evento para cuenta regresiva (formato ISO).
-            eventDateIso: '2027-05-29T16:00:00',
+            // Fecha/hora de la ceremonia para la cuenta regresiva (formato ISO).
+            ceremonyDateIso: '2027-05-29T14:30:00',
+            receptionTimeLabel: '5:00 PM',
             // Nota: cambia estas coordenadas por las reales del local.
             maps: {
                 lat: 19.432608,

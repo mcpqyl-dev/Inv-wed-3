@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const fechaDia = document.querySelector('.fecha-dia');
     const fechaMes = document.querySelector('.fecha-mes');
     const fechaAno = document.querySelector('.fecha-año');
+    const ceremoniaHora = document.getElementById('ceremonia-hora');
+    const recepcionHora = document.getElementById('recepcion-hora');
     const abrirMapaBtn = document.getElementById('abrir-mapa');
 
     const nombreCarta = document.getElementById('nombre-invitado');
@@ -69,6 +71,14 @@ document.addEventListener('DOMContentLoaded', function () {
         return String(value).padStart(2, '0');
     }
 
+    function formatTimeLabel(targetDate) {
+        return new Intl.DateTimeFormat('en-US', {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+        }).format(targetDate);
+    }
+
     function syncEventDateDisplay(targetDate) {
         if (!targetDate || Number.isNaN(targetDate.getTime())) return;
 
@@ -94,13 +104,19 @@ document.addEventListener('DOMContentLoaded', function () {
         if (fechaAno && parts.year) {
             fechaAno.textContent = parts.year;
         }
+        if (ceremoniaHora) {
+            ceremoniaHora.textContent = formatTimeLabel(targetDate);
+        }
+        if (recepcionHora && typeof uiConfig.receptionTimeLabel === 'string' && uiConfig.receptionTimeLabel.trim()) {
+            recepcionHora.textContent = uiConfig.receptionTimeLabel.trim();
+        }
     }
 
     function setupCountdown() {
         if (!countdownTime) return;
 
-        const eventDateIso = (uiConfig.eventDateIso || '').trim();
-        const targetDate = eventDateIso ? new Date(eventDateIso) : null;
+        const ceremonyDateIso = String(uiConfig.ceremonyDateIso || uiConfig.eventDateIso || '').trim();
+        const targetDate = ceremonyDateIso ? new Date(ceremonyDateIso) : null;
 
         if (!targetDate || Number.isNaN(targetDate.getTime())) {
             [cdDias, cdHoras, cdMinutos, cdSegundos].forEach(function (el) {
