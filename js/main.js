@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const ceremoniaHora = document.getElementById('ceremonia-hora');
     const recepcionHora = document.getElementById('recepcion-hora');
     const abrirMapaBtn = document.getElementById('abrir-mapa');
+    const musicFab = document.getElementById('music-fab');
+    const musicaBoda = document.getElementById('musica-boda');
+    const musicUploadInput = document.getElementById('music-upload');
 
     const nombreCarta = document.getElementById('nombre-invitado');
     const pasesCarta = document.getElementById('cantidad-pases');
@@ -417,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }, observerOptions);
 
-        document.querySelectorAll('.seccion-fecha, .seccion-fotos, .seccion-itinerario, .seccion-dresscode, .seccion-regalos, .seccion-rsvp').forEach(function (section) {
+        document.querySelectorAll('.seccion-hero-foto, .seccion-padres, .seccion-fecha, .seccion-fotos, .seccion-itinerario, .seccion-lugares, .seccion-dresscode, .seccion-regalos, .seccion-rsvp').forEach(function (section) {
             section.style.opacity = '0';
             section.style.transform = 'translateY(30px)';
             section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
@@ -480,6 +483,101 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function setupMusicPlayer() {
+        if (!musicFab || !musicaBoda) return;
+
+        const musicUrl = String(uiConfig.musicUrl || '').trim();
+        const source = musicaBoda.querySelector('source');
+        let uploadedObjectUrl = '';
+
+        function hasLoadedTrack() {
+            return Boolean(musicaBoda.currentSrc || musicaBoda.src);
+        }
+
+        function applyTrackUrl(url) {
+            if (source) {
+                source.src = url;
+                musicaBoda.removeAttribute('src');
+            } else {
+                musicaBoda.src = url;
+            }
+            musicaBoda.load();
+        }
+
+        function setPlayingState(isPlaying) {
+            musicFab.classList.toggle('is-playing', isPlaying);
+            musicFab.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
+            musicFab.setAttribute('aria-label', isPlaying ? 'Pausar cancion' : 'Reproducir cancion');
+        }
+
+        if (musicUrl) {
+            applyTrackUrl(musicUrl);
+            musicFab.title = 'Reproducir o pausar cancion';
+        } else if (musicUploadInput) {
+            musicFab.title = 'Sube una cancion desde tu dispositivo';
+            musicFab.setAttribute('aria-label', 'Subir cancion');
+        } else {
+            musicFab.disabled = true;
+            musicFab.classList.add('is-disabled');
+            musicFab.title = 'Configura ui.musicUrl en js/config.js para activar la musica.';
+            return;
+        }
+
+        musicFab.addEventListener('click', async function () {
+            if (!hasLoadedTrack()) {
+                if (musicUploadInput) {
+                    musicUploadInput.click();
+                }
+                return;
+            }
+
+            try {
+                if (musicaBoda.paused) {
+                    await musicaBoda.play();
+                    setPlayingState(true);
+                } else {
+                    musicaBoda.pause();
+                    setPlayingState(false);
+                }
+            } catch (error) {
+                setPlayingState(false);
+                console.warn('No se pudo iniciar la musica automaticamente.', error);
+            }
+        });
+
+        if (musicUploadInput) {
+            musicUploadInput.addEventListener('change', async function () {
+                const file = this.files && this.files[0];
+                if (!file) return;
+
+                if (uploadedObjectUrl) {
+                    URL.revokeObjectURL(uploadedObjectUrl);
+                }
+
+                uploadedObjectUrl = URL.createObjectURL(file);
+                applyTrackUrl(uploadedObjectUrl);
+
+                try {
+                    await musicaBoda.play();
+                    setPlayingState(true);
+                } catch (error) {
+                    setPlayingState(false);
+                    console.warn('No se pudo reproducir la cancion cargada.', error);
+                }
+            });
+        }
+
+        musicaBoda.addEventListener('pause', function () {
+            setPlayingState(false);
+        });
+
+        musicaBoda.addEventListener('play', function () {
+            setPlayingState(true);
+        });
+
+        setPlayingState(false);
+    }
+
     window.InvitationUI = {
         applyGuestContext: applyGuestContext,
         setGuestStatus: setGuestStatus,
@@ -505,6 +603,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setupAttendanceToggle();
     setupCountdown();
     setupMapButton();
+    setupMusicPlayer();
     setupRevealAnimation();
     setupParallax();
 

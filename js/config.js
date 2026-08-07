@@ -18,6 +18,8 @@
             // Fecha/hora de la ceremonia para la cuenta regresiva (formato ISO).
             ceremonyDateIso: '2027-05-29T14:30:00',
             receptionTimeLabel: '5:00 PM',
+            // URL publica de la cancion para el boton flotante de reproduccion.
+            musicUrl: '',
             // Nota: cambia estas coordenadas por las reales del local.
             maps: {
                 lat: 19.432608,
