@@ -22,14 +22,14 @@
             musicUrl: '',
             // Nota: cambia estas coordenadas por las reales del local de recepcion.
             maps: {
-                lat: 19.432608,
-                lng: -99.133209,
+                lat:-12.0523891567762,
+                lng: -77.03573394684813,
                 zoom: 17
             },
             // Coordenadas de la misa/iglesia.
             churchMaps: {
-                lat: 19.4309,
-                lng: -99.1351,
+                lat: -12.049185945201359,
+                lng: -77.02899672711666,
                 zoom: 17
             }
         },
