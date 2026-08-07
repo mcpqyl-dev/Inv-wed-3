@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const recepcionHora = document.getElementById('recepcion-hora');
     const abrirMapaBtn = document.getElementById('abrir-mapa');
     const musicFab = document.getElementById('music-fab');
+    const musicMuteFab = document.getElementById('music-mute-fab');
     const musicaBoda = document.getElementById('musica-boda');
     const musicUploadInput = document.getElementById('music-upload');
 
@@ -53,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let sobreAbierto = false;
     let envelopeReady = false;
     let envelopeCanOpen = false;
+    let requestAutoMusicStart = function () {};
     let currentGuest = {
         codigo: '',
         nombre: safeDefaultName,
@@ -326,6 +328,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (sobreAbierto) return;
         sobreAbierto = true;
         sobre.classList.add('abierto');
+        requestAutoMusicStart();
 
         const revealContent = function () {
             sobreSection.classList.add('hidden');
@@ -507,6 +510,30 @@ document.addEventListener('DOMContentLoaded', function () {
             musicFab.setAttribute('aria-label', isPlaying ? 'Pausar cancion' : 'Reproducir cancion');
         }
 
+        function setMutedState(isMuted) {
+            if (!musicMuteFab) return;
+            musicMuteFab.classList.toggle('is-muted', isMuted);
+            musicMuteFab.setAttribute('aria-pressed', isMuted ? 'true' : 'false');
+            musicMuteFab.setAttribute('aria-label', isMuted ? 'Activar sonido' : 'Silenciar cancion');
+        }
+
+        async function playMusicIfPossible() {
+            if (!hasLoadedTrack()) return;
+            if (!musicaBoda.paused) return;
+
+            try {
+                await musicaBoda.play();
+                setPlayingState(true);
+            } catch (error) {
+                setPlayingState(false);
+                console.warn('No se pudo iniciar la musica automaticamente.', error);
+            }
+        }
+
+        requestAutoMusicStart = function () {
+            void playMusicIfPossible();
+        };
+
         if (musicUrl) {
             applyTrackUrl(musicUrl);
             musicFab.title = 'Reproducir o pausar cancion';
@@ -517,6 +544,10 @@ document.addEventListener('DOMContentLoaded', function () {
             musicFab.disabled = true;
             musicFab.classList.add('is-disabled');
             musicFab.title = 'Configura ui.musicUrl en js/config.js para activar la musica.';
+            if (musicMuteFab) {
+                musicMuteFab.disabled = true;
+                musicMuteFab.classList.add('is-disabled');
+            }
             return;
         }
 
@@ -530,8 +561,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             try {
                 if (musicaBoda.paused) {
-                    await musicaBoda.play();
-                    setPlayingState(true);
+                    await playMusicIfPossible();
                 } else {
                     musicaBoda.pause();
                     setPlayingState(false);
@@ -564,6 +594,13 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
+        if (musicMuteFab) {
+            musicMuteFab.addEventListener('click', function () {
+                musicaBoda.muted = !musicaBoda.muted;
+                setMutedState(musicaBoda.muted);
+            });
+        }
+
         musicaBoda.addEventListener('pause', function () {
             setPlayingState(false);
         });
@@ -572,7 +609,12 @@ document.addEventListener('DOMContentLoaded', function () {
             setPlayingState(true);
         });
 
+        musicaBoda.addEventListener('volumechange', function () {
+            setMutedState(musicaBoda.muted);
+        });
+
         setPlayingState(false);
+        setMutedState(musicaBoda.muted);
     }
 
     window.InvitationUI = {

@@ -362,12 +362,20 @@
 
     </section>
 
-    <button type="button" class="music-fab" id="music-fab" aria-label="Reproducir cancion" aria-pressed="false">
-        <svg viewBox="0 0 24 24" class="music-fab-icono" aria-hidden="true">
-            <path class="icon-play" d="M8 5v14l11-7-11-7Z"/>
-            <path class="icon-pause" d="M7 5h3v14H7V5Zm7 0h3v14h-3V5Z"/>
-        </svg>
-    </button>
+    <div class="music-controls" role="group" aria-label="Controles de musica">
+        <button type="button" class="music-fab music-fab-mute" id="music-mute-fab" aria-label="Silenciar cancion" aria-pressed="false">
+            <svg viewBox="0 0 24 24" class="music-fab-icono" aria-hidden="true">
+                <path class="icon-sound-on" d="M14 3 9.8 7H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h3.8L14 21V3Zm2.8 5.2-1.4 1.4a3.5 3.5 0 0 1 0 4.8l1.4 1.4a5.5 5.5 0 0 0 0-7.6Z"/>
+                <path class="icon-sound-off" d="M14 3 9.8 7H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h3.8L14 21V3Zm2.3 6.3 1.4-1.4L20 10.2l2.3-2.3 1.4 1.4-2.3 2.3 2.3 2.3-1.4 1.4-2.3-2.3-2.3 2.3-1.4-1.4 2.3-2.3-2.3-2.3Z"/>
+            </svg>
+        </button>
+        <button type="button" class="music-fab" id="music-fab" aria-label="Reproducir cancion" aria-pressed="false">
+            <svg viewBox="0 0 24 24" class="music-fab-icono" aria-hidden="true">
+                <path class="icon-play" d="M8 5v14l11-7-11-7Z"/>
+                <path class="icon-pause" d="M7 5h3v14H7V5Zm7 0h3v14h-3V5Z"/>
+            </svg>
+        </button>
+    </div>
     <audio id="musica-boda" preload="none" loop>
         <source src="" type="audio/mpeg">
     </audio>
