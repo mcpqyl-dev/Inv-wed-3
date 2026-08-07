@@ -581,6 +581,7 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center center;
 }
 
 .portada-overlay {
@@ -1724,11 +1725,17 @@ img {
     }
 
     .seccion-portada {
-        min-height: 100dvh;
+        min-height: 100svh;
         margin-bottom: 1rem;
         border-radius: 0;
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding: 0;
+    }
+
+    .portada-contenido {
+        width: min(92vw, 420px);
+        margin: 0 auto;
+        padding: 1.1rem 0.8rem;
+        text-align: center;
     }
 
     .portada-nombres {
@@ -1759,31 +1766,47 @@ img {
     }
 
     .timeline {
-        padding-left: 1.5rem;
+        max-width: 100%;
+        padding: 0.2rem 0.15rem;
     }
 
     .timeline::before {
-        left: 11px;
-        transform: none;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .timeline-item {
-        grid-template-columns: 1fr;
-        gap: 0.55rem;
-        padding-left: 0.8rem;
+        grid-template-columns: minmax(0, 1fr) 38px minmax(0, 1fr);
+        gap: 0.5rem;
+        padding-left: 0;
+        align-items: center;
+        justify-content: center;
     }
 
     .timeline-hora {
-        text-align: left;
-        font-size: 0.96rem;
+        text-align: right;
+        font-size: 0.78rem;
+        letter-spacing: 0.5px;
     }
 
     .timeline-contenido h4 {
-        font-size: 1.24rem;
+        font-size: 1rem;
+        line-height: 1.22;
     }
 
     .timeline-contenido p {
-        font-size: 0.92rem;
+        font-size: 0.8rem;
+        line-height: 1.28;
+    }
+
+    .timeline-icono {
+        width: 34px;
+        height: 34px;
+    }
+
+    .timeline-icono svg {
+        width: 15px;
+        height: 15px;
     }
 
     .dresscode-item-grid {
