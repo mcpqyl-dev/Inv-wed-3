@@ -16,7 +16,7 @@
             maxPasesAbsoluto: 10,
             ocultarCamposSiNoAsiste: true,
             // Fecha/hora del evento para cuenta regresiva (formato ISO).
-            eventDateIso: '2026-09-15T16:00:00',
+            eventDateIso: '2027-05-29T16:00:00',
             // Nota: cambia estas coordenadas por las reales del local.
             maps: {
                 lat: 19.432608,

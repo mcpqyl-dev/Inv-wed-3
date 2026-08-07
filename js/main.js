@@ -24,6 +24,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const cdHoras = document.getElementById('cd-horas');
     const cdMinutos = document.getElementById('cd-minutos');
     const cdSegundos = document.getElementById('cd-segundos');
+    const fechaDiaSemana = document.querySelector('.fecha-dia-semana');
+    const fechaDia = document.querySelector('.fecha-dia');
+    const fechaMes = document.querySelector('.fecha-mes');
+    const fechaAno = document.querySelector('.fecha-año');
     const abrirMapaBtn = document.getElementById('abrir-mapa');
 
     const nombreCarta = document.getElementById('nombre-invitado');
@@ -65,6 +69,33 @@ document.addEventListener('DOMContentLoaded', function () {
         return String(value).padStart(2, '0');
     }
 
+    function syncEventDateDisplay(targetDate) {
+        if (!targetDate || Number.isNaN(targetDate.getTime())) return;
+
+        const parts = new Intl.DateTimeFormat('es-ES', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        }).formatToParts(targetDate).reduce(function (acc, part) {
+            acc[part.type] = part.value;
+            return acc;
+        }, {});
+
+        if (fechaDiaSemana && parts.weekday) {
+            fechaDiaSemana.textContent = parts.weekday.charAt(0).toUpperCase() + parts.weekday.slice(1);
+        }
+        if (fechaDia && parts.day) {
+            fechaDia.textContent = parts.day;
+        }
+        if (fechaMes && parts.month) {
+            fechaMes.textContent = parts.month.charAt(0).toUpperCase() + parts.month.slice(1);
+        }
+        if (fechaAno && parts.year) {
+            fechaAno.textContent = parts.year;
+        }
+    }
+
     function setupCountdown() {
         if (!countdownTime) return;
 
@@ -77,6 +108,8 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             return;
         }
+
+        syncEventDateDisplay(targetDate);
 
         const updateCountdown = function () {
             const now = new Date();
