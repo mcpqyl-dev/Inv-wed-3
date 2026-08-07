@@ -1007,9 +1007,10 @@ img {
     position: relative;
     padding: 0 0 1.55rem;
     display: grid;
-    grid-template-columns: minmax(110px, 130px) 56px minmax(0, 1fr);
+    grid-template-columns: minmax(140px, 260px) 56px minmax(140px, 260px);
     align-items: center;
     gap: 0.9rem;
+    justify-content: center;
 }
 
 .timeline-item:last-child {
@@ -1033,6 +1034,10 @@ img {
     font-weight: 500;
     color: var(--marron);
     margin-bottom: 0.08rem;
+}
+
+.timeline-contenido {
+    text-align: left;
 }
 
 .timeline-contenido p {
